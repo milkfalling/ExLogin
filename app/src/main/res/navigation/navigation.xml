@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/friendsFragment">
+    <fragment
+        android:id="@+id/friendsFragment"
+        android:name="com.example.exlogin.controller.FriendsFragment"
+        android:label="fragment_friends"
+        tools:layout="@layout/fragment_friends">
+        <action
+            android:id="@+id/action_friendsFragment_to_friendDetailFragment"
+            app:destination="@id/friendDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/friendDetailFragment"
+        android:name="com.example.exlogin.controller.FriendDetailFragment"
+        android:label="fragment_friend_detail"
+        tools:layout="@layout/fragment_friend_detail" />
+</navigation>

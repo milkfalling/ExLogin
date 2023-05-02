@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">ExLogin</string>
+    <string name="todo">TODO</string>
+    <string name="name1">多多</string>
+    <string name="name2">汪汪</string>
+    <string name="name3">鴨米</string>
+    <string name="tel1">0987</string>
+    <string name="tel2">0997</string>
+    <string name="tel3">9999</string>
+    <string name="textFriendName">請輸入欲查詢的好友名</string>
+
+
+
+</resources>
