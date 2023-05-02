@@ -40,9 +40,9 @@ class FriendsViewModel : ViewModel() {
     /** 模擬取得遠端資料 */
     private fun loadFriends() {
         val friendList = mutableListOf<Friend>()
-        friendList.add(Friend(R.drawable.img, "Ivy", "091234342"))
-        friendList.add(Friend(R.drawable.img_1, "Mary", "090893473"))
-        friendList.add(Friend(R.drawable.img_2, "Sue", "0987466644"))
+        friendList.add(Friend(R.drawable.img, "吉良吉影", "091234342","男","杜王町東北部","33","我的名字叫吉良吉影，33歲。住在杜王町東北部的別墅區一帶，未婚。我在龜友連鎖店服務。每天都要加班到晚上8點才能回家。我不抽煙，酒僅止於淺嚐。晚上11點睡，每天要睡足8個小時。睡前，我一定喝一杯溫牛奶，然後做20分鐘的柔軟操，上了床，馬上熟睡。一覺到天亮，決不把疲勞和壓力留到第二天。醫生都說我很正常。"))
+        friendList.add(Friend(R.drawable.img_1, "野獸先輩", "090893473","男","台南","53","test"))
+        friendList.add(Friend(R.drawable.img_3, "惡臭哲學家", "0987466644","男","小琉球","10","test"))
         this.friendList = friendList
         this.friends.value = this.friendList
     }

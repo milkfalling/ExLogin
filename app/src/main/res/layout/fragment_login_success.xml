@@ -15,11 +15,12 @@
         tools:context=".controller.login_success">
 
         <TextView
+            android:id="@+id/txtWait"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center_horizontal|center_vertical"
             android:hint="@string/txtLoginSuccess"
-            android:text="@{viewModel.memberinfo()}"/>
+            android:text="@string/txtLoginSuccess" />
 
     </FrameLayout>
 </layout>

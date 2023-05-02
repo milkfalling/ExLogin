@@ -7,27 +7,31 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.exlogin.R
+import com.example.exlogin.databinding.FragmentRegisterPageBinding
+import com.example.exlogin.model.Member
 import com.example.exlogin.viewmodel.RegisterPageViewModel
 
 class Register_page : Fragment() {
 
-    companion object {
-        fun newInstance() = Register_page()
-    }
-
-    private lateinit var viewModel: RegisterPageViewModel
+    private lateinit var binding: FragmentRegisterPageBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_register_page, container, false)
+        binding = FragmentRegisterPageBinding.inflate(inflater, container, false)
+        binding.viewModel = RegisterPageViewModel()
+        binding.lifecycleOwner = viewLifecycleOwner
+        return binding.root
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(RegisterPageViewModel::class.java)
-        // TODO: Use the ViewModel
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+//        這幾行想幫使用者直接拿一開始的帳密過來填
+//        arguments?.let { bundle ->
+//            bundle.getSerializable("member")?.let {
+//                binding.viewModel?.member?.value = it as Member
+//            }
+            binding.viewModel?.uid?.value = "看到這行就是OKOK"
+            binding.viewModel?.password?.value = "看到這行就是O了個姬芭K"
     }
-
 }

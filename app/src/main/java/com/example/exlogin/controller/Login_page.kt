@@ -1,5 +1,6 @@
 package com.example.exlogin.controller
 
+import android.annotation.SuppressLint
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -11,6 +12,12 @@ import com.example.exlogin.R
 import com.example.exlogin.databinding.FragmentLoginPageBinding
 import com.example.exlogin.model.Member
 import com.example.exlogin.viewmodel.LoginPageViewModel
+import android.app.Dialog
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
+import android.view.Window
+import android.widget.Button
+import android.widget.TextView
 
 class Login_page : Fragment() {
 
@@ -27,6 +34,7 @@ class Login_page : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
         with(binding) {
             viewModel?.uid?.observe(viewLifecycleOwner) {
                 inputValid()
@@ -38,16 +46,66 @@ class Login_page : Fragment() {
                 if (!inputValid()) {
                     return@setOnClickListener
                 }
+                if(!checkRegister()){
+                    val message:String? = "你還沒註冊吧????????"
+                    showCustomDialogBox(message)
+                }
+
+
                 val bundle = Bundle()
                 val uid = viewModel?.uid?.value
                 val password = viewModel?.password?.value
                 val member = Member(uid,password)
-                bundle.putSerializable("mamber",member)
+                bundle.putSerializable("member",member)
                 Navigation.findNavController(it)
                     .navigate(R.id.action_login_page_to_login_success, bundle)
             }
         }
     }
+
+    private fun checkRegister(): Boolean {
+        var isRegister = true
+        with(binding){
+            val uid = viewModel?.uid?.value
+            val password = viewModel?.password?.value
+            if(uid != "henry" ){
+                isRegister = false
+            }
+        }
+            return isRegister
+    }
+
+    @SuppressLint("ResourceType")
+    private fun showCustomDialogBox(message: String?) {
+        val dialog = Dialog(this.requireContext())
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setCancelable(false)
+        dialog.setContentView(R.layout.layout_custom_dialog)
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        val tvMessage: TextView = dialog.findViewById(R.id.tvMessage)
+        val btnYes: Button = dialog.findViewById(R.id.btYes)
+        val btnNo: Button = dialog.findViewById(R.id.btNo)
+
+        tvMessage.text = message
+
+        btnYes.setOnClickListener {
+            //導航沒寫完
+//            val bundle = Bundle()
+//            val uid = binding.viewModel?.uid?.value
+//            val password = binding.viewModel?.password?.value
+//            val member = Member(uid,password)
+//            bundle.putSerializable("member",member)
+//            Navigation.findNavController(it).navigate(R.id.register_page)
+            dialog.dismiss()
+        }
+
+        btnNo.setOnClickListener {
+            dialog.dismiss()
+        }
+        dialog.show()
+    }
+
     private fun inputValid(): Boolean {
         var valid = true
         with(binding) {
@@ -70,5 +128,7 @@ class Login_page : Fragment() {
         }
         return valid
     }
+
+
 
 }

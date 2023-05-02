@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.LifecycleOwner
+import androidx.navigation.Navigation
 import com.example.exlogin.R
 import com.example.exlogin.databinding.FragmentLoginSuccessBinding
 import com.example.exlogin.model.Friend
@@ -29,9 +30,18 @@ class login_success : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         //取bundle資料
         //等待5秒後跳轉
+        with(binding){
+            txtWait.setOnClickListener {
+                Navigation.findNavController(view)
+                    .navigate(R.id.action_login_success_to_friendsFragment)
+            }
+        }
         arguments?.let { bundle ->
             bundle.getSerializable("member")?.let {
+                binding.viewModel?.member?.value = it as Member
             }
+
+
         }
     }
 }
