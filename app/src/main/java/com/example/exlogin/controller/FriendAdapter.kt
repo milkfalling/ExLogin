@@ -14,10 +14,6 @@ import com.example.exlogin.model.Friend
 class FriendAdapter(private var friends: List<Friend>) : //private var=既是屬性也是參數的傳法
     RecyclerView.Adapter<FriendAdapter.FriendViewHolder>() {
 
-    /**
-     * 更新好友列表內容
-     * @param friends 新的好友列表
-     */
     fun updateFriends(friends: List<Friend>) {
         this.friends = friends
         notifyDataSetChanged()

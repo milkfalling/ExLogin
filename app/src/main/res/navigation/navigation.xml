@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation"
-    app:startDestination="@id/friendsFragment">
+    app:startDestination="@id/select_page">
     <fragment
         android:id="@+id/friendsFragment"
         android:name="com.example.exlogin.controller.FriendsFragment"
@@ -18,4 +18,83 @@
         android:name="com.example.exlogin.controller.FriendDetailFragment"
         android:label="fragment_friend_detail"
         tools:layout="@layout/fragment_friend_detail" />
+    <fragment
+        android:id="@+id/select_page"
+        android:name="com.example.exlogin.controller.Select_page"
+        android:label="fragment_select_page"
+        tools:layout="@layout/fragment_select_page" >
+        <action
+            android:id="@+id/action_select_page_to_login_page"
+            app:destination="@id/login_page" />
+        <action
+            android:id="@+id/action_select_page_to_forgot_password"
+            app:destination="@id/forgot_password" />
+        <action
+            android:id="@+id/action_select_page_to_register_page"
+            app:destination="@id/register_page" />
+    </fragment>
+    <fragment
+        android:id="@+id/login_page"
+        android:name="com.example.exlogin.controller.Login_page"
+        android:label="fragment_login_page"
+        tools:layout="@layout/fragment_login_page" >
+        <action
+            android:id="@+id/action_login_page_to_login_success"
+            app:destination="@id/login_success" />
+    </fragment>
+    <fragment
+        android:id="@+id/forgot_password"
+        android:name="com.example.exlogin.controller.forgot_password"
+        android:label="fragment_forgot_password"
+        tools:layout="@layout/fragment_forgot_password" >
+        <action
+            android:id="@+id/action_forgot_password_to_input_vaild"
+            app:destination="@id/input_vaild" />
+    </fragment>
+    <fragment
+        android:id="@+id/register_page"
+        android:name="com.example.exlogin.controller.Register_page"
+        android:label="fragment_register_page"
+        tools:layout="@layout/fragment_register_page" >
+        <action
+            android:id="@+id/action_register_page_to_register_success"
+            app:destination="@id/register_success" />
+    </fragment>
+    <fragment
+        android:id="@+id/register_success"
+        android:name="com.example.exlogin.controller.register_success"
+        android:label="fragment_register_success"
+        tools:layout="@layout/fragment_register_success" />
+    <fragment
+        android:id="@+id/login_success"
+        android:name="com.example.exlogin.controller.login_success"
+        android:label="fragment_login_success"
+        tools:layout="@layout/fragment_login_success" >
+        <action
+            android:id="@+id/action_login_success_to_friendsFragment"
+            app:destination="@id/friendsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/reset_password"
+        android:name="com.example.exlogin.controller.reset_password"
+        android:label="fragment_reset_password"
+        tools:layout="@layout/fragment_reset_password" >
+        <action
+            android:id="@+id/action_reset_password_to_reset_success"
+            app:destination="@id/reset_success" />
+    </fragment>
+    <fragment
+        android:id="@+id/input_vaild"
+        android:name="com.example.exlogin.controller.input_vaild"
+        android:label="fragment_input_vaild"
+        tools:layout="@layout/fragment_input_vaild" >
+        <action
+            android:id="@+id/action_input_vaild_to_reset_password"
+            app:destination="@id/reset_password" />
+    </fragment>
+    <fragment
+        android:id="@+id/reset_success"
+        android:name="com.example.exlogin.controller.reset_success"
+        android:label="fragment_reset_success"
+        tools:layout="@layout/fragment_reset_success" />
 </navigation>

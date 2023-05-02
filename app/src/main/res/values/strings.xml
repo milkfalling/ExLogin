@@ -8,7 +8,15 @@
     <string name="tel2">0997</string>
     <string name="tel3">9999</string>
     <string name="textFriendName">請輸入欲查詢的好友名</string>
-
+    <string name="txtLogin">登入</string>
+    <string name="txtRegist">註冊</string>
+    <string name="txtForgotPassword">忘記密碼</string>
+    <string name="txtInputUsername">請輸入帳號</string>
+    <string name="txtInputPassword">請輸入密碼</string>
+    <string name="txtSubmit">送出</string>
+    <string name="txtWrongFromat">格式錯誤</string>
+    <string name="txtCantNull">不可為空</string>
+    <string name="txtLoginSuccess">登入成功，請稍待</string>
 
 
 </resources>
