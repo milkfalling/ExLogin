@@ -17,7 +17,6 @@ class FriendsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View {
-        // SearchView放在畫面頂端時通常會隱藏標題列
         (requireActivity() as MainActivity).supportActionBar?.hide()
         val viewModel: FriendsViewModel by viewModels()
         binding = FragmentFriendsBinding.inflate(inflater, container, false)
@@ -25,6 +24,7 @@ class FriendsFragment : Fragment() {
         return binding.root
     }
 
+    //需要規範大頭貼的大小，這樣才不會跑版ㄅ
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         with(binding) {
             recyclerView.layoutManager = LinearLayoutManager(requireContext())//這條要記得設定，不寫的話不會跳錯但東西出不來

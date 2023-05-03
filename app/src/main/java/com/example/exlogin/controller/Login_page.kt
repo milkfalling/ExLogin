@@ -96,7 +96,7 @@ class Login_page : Fragment() {
 //            val password = binding.viewModel?.password?.value
 //            val member = Member(uid,password)
 //            bundle.putSerializable("member",member)
-//            Navigation.findNavController(it).navigate(R.id.register_page)
+            Navigation.findNavController(it).navigate(R.id.register_page)
             dialog.dismiss()
         }
 

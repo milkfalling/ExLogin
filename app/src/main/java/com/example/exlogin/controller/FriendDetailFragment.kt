@@ -1,5 +1,6 @@
 package com.example.exlogin.controller
 
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -28,8 +29,14 @@ class FriendDetailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         arguments?.let { bundle ->
-            bundle.getSerializable("friend")?.let {
-                binding.viewModel?.friend?.value = it as Friend
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {   //判別手機版本新舊
+                bundle.getSerializable("friend",Friend::class.java)?.let {
+                    binding.viewModel?.friend?.value = it as Friend
+                }
+            } else {
+                bundle.getSerializable("friend")?.let {
+                    binding.viewModel?.friend?.value = it as Friend
+                }
             }
         }
     }
