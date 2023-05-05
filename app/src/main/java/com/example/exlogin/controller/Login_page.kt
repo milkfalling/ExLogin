@@ -59,7 +59,7 @@ class Login_page : Fragment() {
                     val password = viewModel?.password?.value
                     val member = Member(uid, password)
                     bundle.putSerializable("member", member)
-                    Navigation.findNavController(it)
+                    Navigation.findNavController(it)123123
                         .navigate(R.id.friendsFragment, bundle)
                 }
             }
