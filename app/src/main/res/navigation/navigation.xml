@@ -39,9 +39,6 @@
         android:label="fragment_login_page"
         tools:layout="@layout/fragment_login_page" >
         <action
-            android:id="@+id/action_login_page_to_blankFragment"
-            app:destination="@id/blankFragment" />
-        <action
             android:id="@+id/action_login_page_to_friendsFragment"
             app:destination="@id/friendsFragment" />
     </fragment>

@@ -28,51 +28,57 @@ class Login_page : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentLoginPageBinding.inflate(inflater, container, false)
+        //資料綁定
         binding.viewModel = LoginPageViewModel()
+        //生命周期綁定
         binding.lifecycleOwner = viewLifecycleOwner
+        //return一個VIEW
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
         with(binding) {
+            //監控uid
             viewModel?.uid?.observe(viewLifecycleOwner) {
-                inputValid()
+                inputValid()//進行輸入判定
             }
+            //監控password
             viewModel?.password?.observe(viewLifecycleOwner) {
-                inputValid()
+                inputValid()//進行輸入判定
             }
             button4.setOnClickListener {
-                if (!inputValid()) {
-                    return@setOnClickListener
-                }
-                if(!checkRegister()){
-                    val message:String? = "你還沒註冊吧????????"
+                if (!inputValid()) { //為了要讓檢查為不合格(false)的話執行下一段，所以要加一個!讓檢查式為true
+                    return@setOnClickListener //這抄範例的，查了一下大概就是停在這啥都不做的意思，大概是讓按鈕失效的原因?
+                }else if (!checkRegister()) { //若為尚未註冊帳號則
+                    val message: String? = "你還沒註冊吧????????"
                     showCustomDialogBox(message)
+                }else {//都通過則執行帶資料與下一頁的動作
+                    val bundle = Bundle()
+                    val uid = viewModel?.uid?.value
+                    val password = viewModel?.password?.value
+                    val member = Member(uid, password)
+                    bundle.putSerializable("member", member)
+                    Navigation.findNavController(it)
+                        .navigate(R.id.friendsFragment, bundle)
                 }
-
-
-                val bundle = Bundle()
-                val uid = viewModel?.uid?.value
-                val password = viewModel?.password?.value
-                val member = Member(uid,password)
-                bundle.putSerializable("member",member)
-                Navigation.findNavController(it)
-                    .navigate(R.id.action_login_page_to_login_success, bundle)
             }
         }
     }
 
+    /**
+     * 檢查此帳號是否為已經註冊的會員
+     */
     private fun checkRegister(): Boolean {
-        var isRegister = true
-        with(binding){
-            val uid = viewModel?.uid?.value
-            val password = viewModel?.password?.value
-            if(uid != "henry" ){
-                isRegister = false
+        var isRegister = true //預設為已註冊
+        with(binding) {
+            val uid = viewModel?.uid?.value //擷取uid的值
+            val password = viewModel?.password?.value //擷取password的值
+            if (uid != "henry") { //若uid不是henry
+                isRegister = false //尚未註冊指派給結果變數
             }
         }
-            return isRegister
+        return isRegister //回傳結果變數
     }
 
     @SuppressLint("ResourceType")
@@ -106,29 +112,25 @@ class Login_page : Fragment() {
         dialog.show()
     }
 
+    /**
+     * 輸入判定，預設為合格(vaild)，若uid與password不為空值
+     */
     private fun inputValid(): Boolean {
-        var valid = true
+        var valid = true //預設值為合格
         with(binding) {
-            val uid = viewModel?.uid?.value
-            val password = viewModel?.password?.value
-            if (uid != null || password != null) {
-                if (uid != null) {
-                    if (uid.isEmpty() || uid == " ") {
-                        editTextTextPersonName.error = getString(R.string.txtCantNull)
-                        valid = false
-                    }
-                }
-                if (password != null) {
-                    if (password.isEmpty() || password==" ") {
-                        editTextTextPersonName2.error = getString(R.string.txtCantNull)
-                        valid = false
-                    }
-                }
+            val uid = viewModel?.uid?.value  //擷取uid的liveData
+            val password = viewModel?.password?.value //password的liveData
+            if (uid == null || uid.isEmpty()) { //若為null或者空值
+                etUserName.error = getString(R.string.txtCantNull) //et顯示錯誤，內容為txtCantNull
+                valid = false //將不合格指派給valid
             }
+            if (password == null || password.isEmpty()) { //若為null或者空值
+                etPassword.error = getString(R.string.txtCantNull) //et顯示錯誤，內容為txtCantNull
+                valid = false //將不合格指派給valid
+            }
+
         }
-        return valid
+        return valid//回傳valid
     }
-
-
 
 }

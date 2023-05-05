@@ -33,7 +33,7 @@ class login_success : Fragment() {
         with(binding){
             txtWait.setOnClickListener {
                 Navigation.findNavController(view)
-                    .navigate(R.id.action_login_success_to_friendsFragment)
+                    .navigate(R.id.friendsFragment)
             }
         }
         arguments?.let { bundle ->
